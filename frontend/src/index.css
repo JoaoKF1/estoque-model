@@ -1,0 +1,507 @@
+:root {
+  color-scheme: light;
+  --cor-primaria: #ff5a2e;
+  --cor-primaria-hover: #e64c21;
+  --cor-secundaria: #1e2097;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #f7f7f7;
+  color: #333;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ===== Tela de Login (layout de duas colunas, com imagem) ===== */
+
+.login-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  background: #f5f5f5;
+}
+
+.login-form-section {
+  flex: 1;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #ffffff;
+  box-shadow: 5px 0 20px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  border-radius: 10px;
+}
+
+.login-form-section h1 {
+  font-size: 32px;
+  color: #333;
+  margin: 0;
+}
+
+.login-image-section {
+  flex: 1;
+  background: url('/img/login.png') center/cover no-repeat;
+  margin: 20px;
+  border-radius: 10px;
+}
+
+.forgot {
+  display: inline-block;
+  color: var(--cor-primaria);
+  text-decoration: none;
+  margin-top: 14px;
+  font-size: 15px;
+}
+
+.forgot:hover {
+  text-decoration: underline;
+}
+
+.login-secondary-link {
+  margin-top: 18px;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.login-secondary-link a {
+  color: var(--cor-primaria);
+  text-decoration: none;
+}
+
+.login-secondary-link a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .login-container {
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .login-image-section {
+    height: 220px;
+    order: -1;
+  }
+}
+
+/* ===== Telas de autenticação (login / registro / esqueci senha / redefinir) ===== */
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 380px;
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 32px;
+  box-shadow: 5px 0 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.auth-card h1 {
+  margin: 0 0 4px;
+  font-size: 32px;
+  color: #333;
+}
+
+.auth-subtitle {
+  margin: 0 0 20px;
+  color: #777;
+  font-size: 16px;
+}
+
+.auth-card label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 12px;
+  color: #333;
+}
+
+/* Campo com ícone do FontAwesome à esquerda, no mesmo padrão do protótipo
+   estático (index.html/css/index.css) que o grupo já tinha feito. */
+.input-box {
+  position: relative;
+  margin-top: 4px;
+}
+
+.input-box + .input-box {
+  margin-top: 15px;
+}
+
+.input-box i {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+  font-size: 16px;
+}
+
+.input-box input {
+  width: 100%;
+  padding: 12px 12px 12px 38px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 15px;
+  background: #fafafa;
+  transition: 0.3s;
+}
+
+.input-box input:focus {
+  outline: none;
+  border-color: var(--cor-primaria);
+  background: #fff;
+}
+
+.auth-card .buttons {
+  display: flex;
+  gap: 12px;
+  margin: 20px 0 0;
+}
+
+.auth-card button {
+  margin-top: 20px;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  background: var(--cor-primaria);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s;
+  flex: 1;
+}
+
+.auth-card button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.auth-card button:not(:disabled):hover {
+  background: var(--cor-primaria-hover);
+}
+
+.auth-card button.secundario {
+  background: transparent;
+  color: var(--cor-primaria);
+  border: 2px solid var(--cor-primaria);
+}
+
+.auth-card button.secundario:not(:disabled):hover {
+  background: var(--cor-primaria);
+  color: white;
+}
+
+.auth-footer {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.auth-footer a {
+  color: var(--cor-primaria);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.auth-footer a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Home ===== */
+
+.home-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.home-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding: 16px 24px;
+  background: linear-gradient(90deg, #ff7a3d, #ff5722);
+  border-radius: 10px;
+  color: white;
+}
+
+.home-header h1 {
+  margin: 0;
+}
+
+.home-header button {
+  padding: 10px 14px;
+  border: none;
+  border-radius: 8px;
+  background: #ffffffcc;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.25s;
+}
+
+.home-header button:hover {
+  background: #fff;
+}
+
+.home-hint {
+  color: #777;
+}
+
+.home-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 12px 20px;
+  background: var(--cor-primaria);
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.25s;
+}
+
+.home-cta:hover {
+  background: var(--cor-primaria-hover);
+}
+
+/* ===== Gerenciar Pallet (RF04) =====
+   Layout inspirado no painel esquerdo de simulacao.html (protótipo
+   estático do grupo): mesma paleta, cartões brancos com borda superior
+   colorida e cabeçalho em gradiente laranja. */
+
+.pallet-page {
+  min-height: 100vh;
+}
+
+.pallet-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  background: linear-gradient(90deg, #ff7a3d, #ff5722);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+  color: white;
+}
+
+.pallet-topbar h1 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.pallet-topbar .top-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.top-btn {
+  min-width: 100px;
+  padding: 10px 14px;
+  border: none;
+  background: #ffffffcc;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: 0.25s;
+}
+
+.top-btn:hover {
+  background: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.pallet-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 100%;
+  padding: 20px;
+  gap: 20px;
+  box-sizing: border-box;
+}
+
+.pallet-form-panel {
+  width: 320px;
+  flex-shrink: 0;
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  border-top: 5px solid #ff5722;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pallet-form-panel h3 {
+  font-size: 22px;
+  margin: 0 0 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pallet-form-panel label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 10px;
+  color: #333;
+}
+
+.pallet-form-panel input {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 15px;
+  margin-top: 4px;
+  background: #fafafa;
+  transition: 0.3s;
+}
+
+.pallet-form-panel input:focus {
+  outline: none;
+  border-color: var(--cor-primaria);
+  background: #fff;
+}
+
+.pallet-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.pallet-actions .btn {
+  padding: 10px 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  background: var(--cor-secundaria);
+  color: white;
+  flex: 1;
+  transition: 0.25s;
+}
+
+.pallet-actions .btn:disabled {
+  background: #999;
+  cursor: not-allowed;
+}
+
+.pallet-actions .btn:not(:disabled):hover {
+  background: #171a7a;
+}
+
+.pallet-actions .btn.salvar {
+  background: var(--cor-primaria);
+}
+
+.pallet-actions .btn.salvar:not(:disabled):hover {
+  background: var(--cor-primaria-hover);
+}
+
+.pallet-limpar {
+  margin-top: 10px;
+  background: transparent;
+  border: none;
+  color: #777;
+  cursor: pointer;
+  font-size: 0.85rem;
+  text-decoration: underline;
+  align-self: flex-start;
+  padding: 0;
+}
+
+.pallet-list-panel {
+  flex: 1;
+  min-width: 0;
+  background: #fff;
+  padding: 22px;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  border-top: 5px solid #ff7a3d;
+}
+
+.pallet-list-panel h2 {
+  margin-top: 0;
+}
+
+.pallet-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+
+.pallet-table th,
+.pallet-table td {
+  text-align: left;
+  padding: 10px 8px;
+  border-bottom: 1px solid #eee;
+  font-size: 0.9rem;
+}
+
+.pallet-table th {
+  color: #777;
+  font-weight: 600;
+}
+
+.pallet-table tr.selecionado {
+  background: #fff1ec;
+}
+
+.pallet-row-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.pallet-row-actions button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--cor-secundaria);
+  font-size: 16px;
+  padding: 4px;
+}
+
+.pallet-row-actions button:hover {
+  color: var(--cor-primaria);
+}
+
+.pallet-empty {
+  color: #777;
+  margin-top: 16px;
+}
+
+@media (max-width: 900px) {
+  .pallet-container {
+    flex-direction: column;
+  }
+
+  .pallet-form-panel {
+    width: 100%;
+  }
+}
