@@ -3,19 +3,20 @@ package com.estoquemodel.backend.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
 /**
- * Implementação provisória: em vez de enviar um e-mail de verdade,
- * apenas imprime o link no console/log do backend.
+ * Implementação de desenvolvimento: em vez de enviar um e-mail de verdade,
+ * apenas imprime o link/código no console/log do backend.
  *
- * Isso permite testar TODO o fluxo de "esqueci minha senha" hoje,
- * sem precisar configurar um servidor SMTP. Quando o grupo quiser
- * enviar e-mails reais, basta implementar EmailService com
- * JavaMailSender (dependência spring-boot-starter-mail) e marcar
- * essa classe com @Primary trocado para a nova implementação.
+ * Isso permite testar TODO o fluxo de "esqueci minha senha" e de confirmação
+ * de cadastro sem credenciais de SMTP. É o comportamento padrão; para enviar
+ * e-mails reais defina app.mail.enabled=true (aí entra o
+ * {@link SmtpEmailService}).
  */
 @Service
+@ConditionalOnProperty(name = "app.mail.enabled", havingValue = "false", matchIfMissing = true)
 public class ConsoleEmailService implements EmailService {
 
     private static final Logger log = LoggerFactory.getLogger(ConsoleEmailService.class);

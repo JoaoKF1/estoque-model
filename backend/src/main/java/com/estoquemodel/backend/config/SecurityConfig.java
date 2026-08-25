@@ -2,6 +2,7 @@ package com.estoquemodel.backend.config;
 
 import com.estoquemodel.backend.security.JwtAuthFilter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -25,6 +26,22 @@ import java.util.List;
 public class SecurityConfig {
 
     private final JwtAuthFilter jwtAuthFilter;
+
+    /**
+     * Origens liberadas para chamar a API. O Vite sobe na 5173, mas troca para
+     * 5174, 5175... quando a porta anterior já está em uso - por isso mais de
+     * uma porta na lista.
+     *
+     * O default está aqui (e não só no application.properties) de propósito:
+     * aquele arquivo não é versionado, então sem o default a aplicação nem
+     * subiria em uma cópia recém-clonada do repositório. Para sobrescrever,
+     * use app.cors.allowed-origins ou a variável CORS_ALLOWED_ORIGINS.
+     */
+    @Value("${app.cors.allowed-origins:"
+            + "http://localhost:5173,http://127.0.0.1:5173,"
+            + "http://localhost:5174,http://127.0.0.1:5174,"
+            + "http://localhost:5175,http://127.0.0.1:5175}")
+    private List<String> allowedOrigins;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -56,16 +73,13 @@ public class SecurityConfig {
 
     /**
      * Libera o front-end (React/Vite) para consumir a API durante o
-     * desenvolvimento. Ajuste "allowedOrigins" para a URL real do
-     * front hospedado quando for para produção.
+     * desenvolvimento. Em produção, defina app.cors.allowed-origins (ou a
+     * variável de ambiente CORS_ALLOWED_ORIGINS) com a URL real do front.
      */
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of(
-                "http://localhost:5173",
-                "http://127.0.0.1:5173"
-        ));
+        configuration.setAllowedOrigins(allowedOrigins);
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);
